@@ -2,7 +2,7 @@ class NameDescriptor:
 
     def __get__(self, instance, owner):
         return instance.__name
-    
+
     def __set__(self, instance, value):
         if value.isalpha(): 
             instance.__name = value
@@ -23,9 +23,10 @@ class AgeDescriptor:
 
 
 class EmailDescriptor:
+
     def __get__(self, instance, owner):
         return instance.__email
-    
+
     def __set__(self, instance, value):
         if "@" in value:
             instance.__email = value
@@ -45,15 +46,43 @@ class User:
         self.__email = email
         User.increase_id()
 
+
     @classmethod
     def increase_id(cls):
         cls.__id += 1
         return User.__id
     
-    def show_info(self):
-        print(f"Id: {User.__id}, name: {self.__name}, age: {self.__age}, email: {self.__email}")
+
+    @staticmethod
+    def get_id():
+        return User.__id
     
 
-if __name__ == "__main__":
-    user = User("Jacob", 0, "jacob.issakov@gmail.com")
-    user.show_info()
+    def get_name(self):
+        return self.__name
+    
+
+    def set_name(self, name):
+        self.__name = name
+    
+
+    def get_age(self):
+        return self.__age
+    
+
+    def set_age(self, age):
+        self.__age = age
+    
+    
+    def get_email(self):
+        return self.__email
+    
+
+    def set_email(self, email):
+        self.__email = email
+        
+    
+    
+    def show_info(self):
+        print(f"Name: {self.__name}, Age: {self.__age}, Email: {self.__email}")
+    
